@@ -32,7 +32,7 @@ const TodoList = props => {
       const jsonValue = await AsyncStorage.getItem('@todoList');
       return jsonValue != null ? JSON.parse(jsonValue) : [];
     } catch (e) {
-      return []
+      return [];
     }
   };
 
@@ -40,7 +40,7 @@ const TodoList = props => {
     return todoList.filter(word => word.includes(searchText));
   }, [todoList, searchText]);
 
-  const addElement = useCallback(async() => {
+  const addElement = useCallback(async () => {
     let newList = Array.from(todoList);
     newList.push(userInput);
     setTodoList(newList);
@@ -53,11 +53,10 @@ const TodoList = props => {
   useEffect(() => {
     const run = async () => {
       const loadList = await getTodoList();
-      setTodoList(loadList)
-    }
-    run()
-    },
-      []);
+      setTodoList(loadList);
+    };
+    run();
+  }, []);
 
   return (
     <SafeAreaView style={styles.background}>
